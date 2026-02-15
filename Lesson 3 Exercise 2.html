@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8">
+    <title>Lesson 3 Exercise 2.html</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+    function ShowText({inputText, setInputText})
+    {
+      function showInputText(e){
+      
+        setInputText(e.target.value);
+      }
+
+      function resetInputText(){
+        const input = document.querySelector('input');
+        input.value = '';
+        setInputText(input.value);
+      }
+
+      function setExampleText(){
+        const input = document.querySelector('input');
+        input.value = 'Afzaal';
+        setInputText(input.value);
+      }
+       return (
+       <> 
+       <input type="text" placeholder = "type a name here" onChange = {showInputText}/>
+       <button onClick ={resetInputText}>Reset</button>
+       <button onClick = {setExampleText}>Example</button>
+        <p>Hello {inputText}</p>
+       </>
+       )
+    }
+
+   function App()
+   {
+      const [inputText, setInputText] = React.useState('');
+
+      return (
+        <>
+        <ShowText inputText = {inputText} setInputText= {setInputText} />
+        </>
+      )
+       
+   }
+
+       
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
